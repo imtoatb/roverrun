@@ -1,8 +1,11 @@
 # ninja log v6
-18	241	7513058621051103	CMakeFiles/untitled1.dir/loc.c.obj	4b84afce451ba9b9
-5	283	7513058620921102	CMakeFiles/untitled1.dir/main.c.obj	7fe5988a39f51d5f
-30	290	7513058621171174	CMakeFiles/untitled1.dir/moves.c.obj	37259393f998e054
+45	326	7529386982066245	CMakeFiles/untitled1.dir/loc.c.obj	4b84afce451ba9b9
+34	330	7529386981970861	CMakeFiles/untitled1.dir/main.c.obj	7fe5988a39f51d5f
+54	328	7529386982152654	CMakeFiles/untitled1.dir/moves.c.obj	37259393f998e054
+370	719	7529386985323389	untitled1.exe	4204280bb787e97d
 69	327	7513058621556525	CMakeFiles/untitled1.dir/stack.c.obj	1ad89867dcb946df
-58	328	7513058621446648	CMakeFiles/untitled1.dir/queue.c.obj	b3040d1f8c77a03b
-42	365	7513058621296591	CMakeFiles/untitled1.dir/map.c.obj	7388c5be4c1e89a4
-365	554	7513058624523385	untitled1.exe	4204280bb787e97d
+71	324	7529386982329610	CMakeFiles/untitled1.dir/queue.c.obj	b3040d1f8c77a03b
+63	370	7529386982243619	CMakeFiles/untitled1.dir/map.c.obj	7388c5be4c1e89a4
+46	603	7529432618156521	CMakeFiles/untitled1.dir/testmove.c.obj	e89bd84ff38a81c6
+25	497	7529435263060368	CMakeFiles/untitled1.dir/testmove.c.obj	e89bd84ff38a81c6
+503	1195	7529435267840637	untitled1.exe	ab5a54ada0b29b23

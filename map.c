@@ -1,6 +1,5 @@
 //
-// Created by flasque on 19/10/2024.
-//
+// Created by flasque on 19/10/20
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -98,9 +97,9 @@ void removeFalseCrevasses(t_map map)
             up = UP(pos);
             dp = DOWN(pos);
             int min_neighbour = COST_UNDEF;
-            if (isValidLocalisation(lp, map.x_max, map.y_max))
+            if (isValidLocalisation(lp, map.x_max, map.y_max))                                                      //Assure que la case voisine est dans la map (qu'on est pas contre un mur)
             {
-                min_neighbour = (map.costs[lp.y][lp.x] < min_neighbour) ? map.costs[lp.y][lp.x] : min_neighbour;
+                min_neighbour = (map.costs[lp.y][lp.x] < min_neighbour) ? map.costs[lp.y][lp.x] : min_neighbour;    //if map.costs[lp.y][lp.x] < min_neighbour return map.costs[lp.y][lp.x], else min_neighbour
             }
             if (isValidLocalisation(rp, map.x_max, map.y_max))
             {

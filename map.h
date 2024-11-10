@@ -9,19 +9,19 @@
 /**
  * @brief Enum for the possible soils of the map
  */
-typedef enum e_soil
+typedef enum e_soil  //Diff type de sol
 {
-    BASE_STATION,
-    PLAIN,
-    ERG,
-    REG,
-    CREVASSE
+    BASE_STATION,    //0
+    PLAIN,           //1
+    ERG,             //2
+    REG,             //4
+    CREVASSE         //10000
 } t_soil;
 
 /**
  * @brief Array of costs for the soils
  */
-static const int _soil_cost[5] = {0, 1, 2, 4, 10000};
+static const int _soil_cost[5] = {0, 1, 2, 4, 10000}; //0 = base, 1 = plain, 2 = erg, 4 = Reg, 10000 = crevasse
 
 /**
  * @brief Structure for the map

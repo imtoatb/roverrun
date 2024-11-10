@@ -8,7 +8,7 @@
 /**
  * @brief Enum for the orientation of the robot (NORTH, EAST, SOUTH, WEST)
  */
-typedef enum e_orientation
+typedef enum e_orientation //-> ori
 {
     NORTH,
     EAST,
@@ -19,7 +19,7 @@ typedef enum e_orientation
 /**
  * @brief Structure for the position of the robot
  */
-typedef struct e_position
+typedef struct e_position //-> pos
 {
     int x;
     int y;
@@ -28,7 +28,7 @@ typedef struct e_position
 /**
  * @brief Structure for the localisation of the robot
  */
-typedef struct s_localisation
+typedef struct s_localisation  //Va servir dans loc.c
 {
     t_position      pos;
     t_orientation   ori;

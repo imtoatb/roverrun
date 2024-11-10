@@ -4,19 +4,26 @@
 
 #include "loc.h"
 
-t_localisation loc_init(int x, int y, t_orientation ori)
+t_localisation loc_init(int x, int y, t_orientation ori)        //Localisation
 {
     t_localisation loc;
     loc.pos.x = x;
     loc.pos.y = y;
-    loc.ori = ori;
+    loc.ori = ori;                                              //Orientation
     return loc;
 }
 
-int isValidLocalisation(t_position loc, int x_max, int y_max)
+int isValidLocalisation(t_position loc, int x_max, int y_max)   //If outside the map = False
 {
     return (loc.x >= 0 && loc.x < x_max && loc.y >= 0 && loc.y < y_max);
 }
+
+//Modif des position pour faire le mouvement
+//  x
+//y 0-----------
+//  |
+//  |
+//  |
 
 t_position LEFT(t_position pos)
 {
