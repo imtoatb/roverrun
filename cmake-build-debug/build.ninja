@@ -85,8 +85,8 @@ build CMakeFiles/untitled1.dir/stack.c.obj: C_COMPILER__untitled1_unscanned_Debu
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir
 
-build CMakeFiles/untitled1.dir/testmove.c.obj: C_COMPILER__untitled1_unscanned_Debug C$:/Users/idfcg/Documents/Documents/Efrei/Efrei$ L2$ -$ S1/Data$ Structure$ and$ Algorithmics$ 2/roverrun/MARC-master/testmove.c || cmake_object_order_depends_target_untitled1
-  DEP_FILE = CMakeFiles\untitled1.dir\testmove.c.obj.d
+build CMakeFiles/untitled1.dir/test.c.obj: C_COMPILER__untitled1_unscanned_Debug C$:/Users/idfcg/Documents/Documents/Efrei/Efrei$ L2$ -$ S1/Data$ Structure$ and$ Algorithmics$ 2/roverrun/MARC-master/test.c || cmake_object_order_depends_target_untitled1
+  DEP_FILE = CMakeFiles\untitled1.dir\test.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\untitled1.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled1.dir
@@ -99,7 +99,7 @@ build CMakeFiles/untitled1.dir/testmove.c.obj: C_COMPILER__untitled1_unscanned_D
 #############################################
 # Link the executable untitled1.exe
 
-build untitled1.exe: C_EXECUTABLE_LINKER__untitled1_Debug CMakeFiles/untitled1.dir/main.c.obj CMakeFiles/untitled1.dir/loc.c.obj CMakeFiles/untitled1.dir/moves.c.obj CMakeFiles/untitled1.dir/map.c.obj CMakeFiles/untitled1.dir/queue.c.obj CMakeFiles/untitled1.dir/stack.c.obj CMakeFiles/untitled1.dir/testmove.c.obj
+build untitled1.exe: C_EXECUTABLE_LINKER__untitled1_Debug CMakeFiles/untitled1.dir/main.c.obj CMakeFiles/untitled1.dir/loc.c.obj CMakeFiles/untitled1.dir/moves.c.obj CMakeFiles/untitled1.dir/map.c.obj CMakeFiles/untitled1.dir/queue.c.obj CMakeFiles/untitled1.dir/stack.c.obj CMakeFiles/untitled1.dir/test.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\untitled1.dir

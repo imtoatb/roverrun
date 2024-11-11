@@ -14,4 +14,6 @@ add_executable(untitled1 main.c
         queue.h
         stack.c
         stack.h
-        testmove.c)
+        test.h
+        test.c
+)
