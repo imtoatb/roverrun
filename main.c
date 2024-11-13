@@ -26,5 +26,3 @@ int main() {
     return 0;
 }
 
-int x = 5, y = 5, x_max = 6, y_mx = 7;
-robot(loc, x_max, y_max)
