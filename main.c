@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "map.h"
+#include "test.c"
 
 int main() {
     t_map map = createMapFromFile("..\\maps\\example1.map");
@@ -24,3 +25,6 @@ int main() {
     displayMap(map);
     return 0;
 }
+
+int x = 5, y = 5, x_max = 6, y_mx = 7;
+robot(loc, x_max, y_max)

@@ -1,16 +1,12 @@
-#include <stdio.h>
-#include <assert.h>
-#include "test.h"
-#include <stdlib.h>
 #include "main.c"
-#include "map.h"
+#include "test.h"
+#include "loc.c"
+#include "loc.h"
 
-char* testmouvement() {
 
-
-    return "mouvement";
-}
-
-int random(int min, int max) {
-    return min + rand() % (max - min);
+char robot(t_position loc, int x_max, int y_max) {
+    while(isValidLocalisation(loc, x_max, y_max) == 0) {
+        printf("The robot is outside the map. OVER");
+    }
+    return "good";
 }

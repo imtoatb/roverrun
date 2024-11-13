@@ -1,7 +1,4 @@
-#ifndef TEST_H
-#define TEST_H
+#include "main.c"
+#include "test.c"
 
-void testmouvement(void);
-
-
-#endif // TEST_H
+char robot(loc, x_max, y_max)
