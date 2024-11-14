@@ -11,10 +11,10 @@ t_node* create_node(t_position localisation, t_move move, int cost) {
 
     t_node* new_node = (t_node*)malloc(sizeof(t_node));                         //Free space
     if (new_node == NULL) {
-        return NULL;                                                            //If node = Null -> Null
+        return NULL;                                                                //If node = Null -> Null
     }
 
-    printf("Memory allocated\n");                                           //Test
+    printf("Memory allocated\n");                                             //Test
 
     new_node->localisation = localisation;
     new_node->cost = cost;
@@ -27,7 +27,7 @@ t_node* create_node(t_position localisation, t_move move, int cost) {
 
 
 void add_child(t_node* parent, t_node* child) {
-    if (parent == NULL || child == NULL) {                                      //if parent or chil Null -> exit
+    if (parent == NULL || child == NULL) {                                          //if parent or chil Null -> exit
         return;
     }
 
@@ -46,15 +46,15 @@ void add_child(t_node* parent, t_node* child) {
 
 
 void free_node(t_node* node) {
-    if (node == NULL) {                                                         //exit
+    if (node == NULL) {                                                               //exit
         return;
     }
 
-    for (int i = 0; i < node->possibilities; i++) {                             //free child
+    for (int i = 0; i < node->possibilities; i++) {                                   //free child
         free_node(node->children[i]);
     }
 
-    free(node->children);                                                       //empty the children array
+    free(node->children);                                                            //empty the children array
     free(node);
 }
 
@@ -76,7 +76,7 @@ t_tree* initialize_tree(t_position localisation, int cost) {
         return NULL;
     }
 
-    tree->tree->cost = cost;                                                //tree->"root"->children
+    tree->tree->cost = cost;                                                       //tree->"root"->children
     tree->tree->children = NULL;
 
     t_node* root_node = create_node(localisation, WAIT, cost);
@@ -87,7 +87,7 @@ t_tree* initialize_tree(t_position localisation, int cost) {
     }
 }
 
-void free_tree(t_tree* tree) {                                              //Delete the tree
+void free_tree(t_tree* tree) {                                                     //Delete the tree
     if (tree == NULL) {
         return;
     }
@@ -100,6 +100,3 @@ void free_tree(t_tree* tree) {                                              //De
     free(tree->tree);
     free(tree);
 }
-
-
-

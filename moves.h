@@ -18,14 +18,14 @@ static char _moves[8][8] = {"F 10m", "F 20m", "F 30m", "B 10m", "T left", "T rig
 
 typedef enum e_move
 {
-    F_10, // Forward 10 m
-    F_20, // Forward 20 m
-    F_30, // Forward 30 m
-    B_10, // Backward 10 m
-    T_LEFT, // Turn left (+90°)
-    T_RIGHT, // Turn right (-90°)
-    U_TURN,
-    WAIT     //Don't move (for itializetree)
+ F_10, // Forward 10 m
+ F_20, // Forward 20 m
+ F_30, // Forward 30 m
+ B_10, // Backward 10 m
+ T_LEFT, // Turn left (+90°)
+ T_RIGHT, // Turn right (-90°)
+ U_TURN,
+ WAIT     //Don't move (for itializetree)
 } t_move;
 
 /**

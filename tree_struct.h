@@ -34,6 +34,4 @@ void add_child(t_node* parent, t_node* child);
 
 t_node* create_tree(t_position localisation, t_move move, int cost);
 
-//void print_tree(t_node* node);
-
 #endif //TREE_STRUCT_H
