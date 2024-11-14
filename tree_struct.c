@@ -9,20 +9,20 @@
 
 t_node* create_node(t_position localisation, t_move move, int cost) {
 
-    t_node* node = (t_node*)malloc(sizeof(t_node));                         //Free space
-    if (node == NULL) {
+    t_node* new_node = (t_node*)malloc(sizeof(t_node));                         //Free space
+    if (new_node == NULL) {
         return NULL;                                                            //If node = Null -> Null
     }
 
-    printf("Memory allocated");                                           //Test
+    printf("Memory allocated\n");                                           //Test
 
-    node->localisation = localisation;
-    node->cost = cost;
-    node->parent = NULL;
-    node->possibilities = 0;
-    node->children = NULL;
+    new_node->localisation = localisation;
+    new_node->cost = cost;
+    new_node->parent = NULL;
+    new_node->possibilities = 0;
+    new_node->children = NULL;
 
-    return node;
+    return new_node;
 }
 
 
@@ -100,3 +100,4 @@ void free_tree(t_tree* tree) {                                              //De
     free(tree->tree);
     free(tree);
 }
+
