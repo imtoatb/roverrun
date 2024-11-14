@@ -25,7 +25,7 @@ typedef enum e_move
     T_LEFT, // Turn left (+90°)
     T_RIGHT, // Turn right (-90°)
     U_TURN,
-    WAIT     //Don't move (for iitializetree)
+    WAIT     //Don't move (for itializetree)
 } t_move;
 
 /**
