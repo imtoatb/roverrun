@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "tree_struct.h"
+#include "tree.h"
 #include "moves.h"
 
 t_node* create_node(t_position loc, t_move move, int cost)
@@ -89,4 +89,80 @@ void free_tree(t_tree* tree)
     free(tree->tree->children);
     free(tree->tree);
     free(tree);
+}
+
+t_tree* initialize_tree_with_choices()
+{
+    // Create root node
+    t_tree* tree = create_tree((t_position){0, 0}, MOVE_NONE, 0); // Root cost is 0
+
+    // Add three child nodes with different costs and positions for testing
+    t_node* child1 = create_node((t_position){1, 1}, MOVE_LEFT, 10);
+    t_node* child2 = create_node((t_position){1, 2}, MOVE_RIGHT, 5);
+    t_node* child3 = create_node((t_position){2, 1}, MOVE_UP, 15);
+
+    // Attach children to the root
+    add_child(tree->tree->children[0], child1);
+    add_child(tree->tree->children[0], child2);
+    add_child(tree->tree->children[0], child3);
+
+    // For testing purposes, add child nodes to each of these nodes as well
+    add_child(child1, create_node((t_position){2, 2}, MOVE_LEFT, 8));
+    add_child(child2, create_node((t_position){2, 3}, MOVE_RIGHT, 3));
+    add_child(child3, create_node((t_position){3, 1}, MOVE_UP, 20));
+
+    return tree;
+}
+
+t_node* find_minimum_cost_leaf(t_node* node, int* min_cost, t_node** min_leaf)
+{
+    if (node->possibilities == 0) // Leaf node
+    {
+        if (node->cost < *min_cost)
+        {
+            *min_cost = node->cost;
+            *min_leaf = node;
+        }
+    }
+    else
+    {
+        for (int i = 0; i < node->possibilities; i++)
+        {
+            find_minimum_cost_leaf(node->children[i], min_cost, min_leaf);
+        }
+    }
+    return *min_leaf;
+}
+
+void trace_path_to_leaf(t_node* leaf)
+{
+    if (leaf == NULL) return;
+    trace_path_to_leaf(leaf->parent); // Recursive call to trace up to the root
+    printf("Position: (%d, %d), Cost: %d\n", leaf->loc.x, leaf->loc.y, leaf->cost);
+}
+
+int main()
+{
+    t_tree* tree = initialize_tree_with_choices();
+
+    // Find minimum cost leaf
+    int min_cost = INT_MAX;
+    t_node* min_leaf = NULL;
+    min_leaf = find_minimum_cost_leaf(tree->tree->children[0], &min_cost, &min_leaf);
+
+    if (min_leaf != NULL)
+    {
+        printf("Minimum cost leaf found with cost: %d\n", min_cost);
+        printf("Path to minimum cost leaf:\n");
+        trace_path_to_leaf(min_leaf);
+    }
+    else
+    {
+        printf("No leaf found in the tree.\n");
+    }
+
+    // Clean up the tree
+    free_tree(tree);
+
+    return 0;
 }
