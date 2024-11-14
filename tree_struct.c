@@ -62,9 +62,9 @@ void free_node(t_node* node) {
 t_tree* initialize_tree(t_position localisation, int cost) {
 
     /*
-     * free the space for tree and root
-     *
+     * free the space for tree and create the root
      */
+
     t_tree* tree = (t_tree*)malloc(sizeof(t_tree));
     if (tree == NULL) {
         return NULL;
@@ -85,20 +85,9 @@ t_tree* initialize_tree(t_position localisation, int cost) {
         free(tree);
         return NULL;
     }
-
-    tree->tree->children = (t_node**)malloc(sizeof(t_node*));
-    if (tree->tree->children == NULL) {
-        free_node(root_node);
-        free(tree->tree);
-        free(tree);
-        return NULL;
-    }
-
-    tree->tree->children[0] = root_node;
-    return tree;
 }
 
-void free_tree(t_tree* tree) {
+void free_tree(t_tree* tree) {                                              //Delete the tree
     if (tree == NULL) {
         return;
     }
