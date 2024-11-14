@@ -37,7 +37,9 @@ void add_child(t_node* parent, t_node* child) {
     parent->possibilities++;
 }
 
+void free_node(t_node* node) {
 
+}
 
 
 
