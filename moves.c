@@ -145,9 +145,9 @@ char *getMoveAsString(t_move move)
 
 t_localisation move(t_localisation loc, t_move move)
 {
-    t_localisation new_loc;
+    t_localisation new_loc = loc;
     new_loc.ori = rotate(loc.ori, move);
-    new_loc = translate(loc, move);
+    new_loc = translate(new_loc, move);
     return new_loc;
 }
 
