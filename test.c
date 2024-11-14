@@ -1,3 +1,4 @@
+/**
 #include "main.c"
 #include "loc.c"
 #include "loc.h"
@@ -32,7 +33,7 @@ void printMap(char map[x_max][y_max]){
 }
 
     
-int main2(){
+int main(){
     char map[x_max][y_max];
     t_localisation robot = loc_init(3, 3, 0);
 
@@ -42,3 +43,5 @@ int main2(){
 
     return 0;
 }
+
+*/
