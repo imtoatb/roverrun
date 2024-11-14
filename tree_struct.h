@@ -26,6 +26,6 @@ t_node* create_node(t_position localisation, t_move move, int cost);
 
 void free_node(t_node* node);
 
-voide add_child(t_node* parent, t_node* child);
+void add_child(t_node* parent, t_node* child);
 
 #endif //TREE_STRUCT_H

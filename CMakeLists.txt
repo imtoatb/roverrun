@@ -17,4 +17,5 @@ add_executable(untitled1 main.c
         test.h
         test.c
         tree_struct.h
+        tree_struct.c
 )

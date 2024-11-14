@@ -31,18 +31,21 @@ t_orientation rotate(t_orientation ori, t_move move)
     switch (move)
     {
         case T_LEFT:
-            rst=3;
+            rst = 3;
             break;
         case T_RIGHT:
-            rst=1;
+            rst = 1;
             break;
         case U_TURN:
-            rst=2;
+            rst = 2;
             break;
+        case WAIT:
+            rst = 0;
         default:
             break;
+
     }
-    return (ori+rst)%4;
+    return (ori + rst) % 4;
 }
 
 t_localisation translate(t_localisation loc, t_move move)
