@@ -1,19 +1,14 @@
-/**
 #ifndef TEST_H
 #define TEST_H
-
 #include "loc.h"
-#include "test.c"
 
-#define x_max 6
-#define y_max 6
+typedef struct robot {
+t_localisation localisation;
+char form;
+} robot;
 
-void initMap(char map[x_max][y_max]);
+robot* createRobot(int x, int y);
 
-void updateMap(char map[x_max][y_max], t_position robot_pos);
-
-
-void printMap(char map[x_max][y_max]);
+void displayRobot(robot robot);
 
 #endif
-*/

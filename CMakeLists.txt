@@ -6,6 +6,7 @@ set(CMAKE_C_STANDARD 11)
 add_executable(untitled1 main.c
         loc.c
         loc.h
+
         moves.c
         moves.h
         map.c

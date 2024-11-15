@@ -1,48 +1,23 @@
-/**
+
 #include "main.c"
 #include "loc.c"
 #include "loc.h"
+#include "test.h"
+#include <stdlib.h>
 
-
-#define x_max 6
-#define y_max 6
-
-
-void initMap(char map[x_max][y_max]){
-    for (int y = 0; y < x_max; y++) {
-        for (int x = 0; x < y_max; x++) {
-            map[y][x] = '.';
-        }
-    }
+robot* allocateRobot() {
+    robot* new_robot = (robot*) calloc(1, sizeof(robot));
+    return new_robot;
 }
 
-void updateMap(char map[x_max][y_max], t_position robot_pos) {
-    if (isValidLocalisation(robot_pos, x_max, y_max)){
-        map[robot_pos.y][robot_pos.x] = 'R';
-
-    }
+robot* createrobot(int x, int y){
+    robot* new_robot = allocateRobot();
+    new_robot->localisation = loc_init(x, y, 0);
+    new_robot->form = 'R';
+    return new_robot;
 }
 
-void printMap(char map[x_max][y_max]){
-    for (int y = 0; y < x_max; y++) {
-        for (int x = 0; x < y_max; x++) {
-            printf("%c ", map[y][x]);
-        }
-        printf("\n");
-    }
+void displayrobot(robot robot) {
+    printf("%c", robot.form);
 }
-
-    
-int main(){
-    char map[x_max][y_max];
-    t_localisation robot = loc_init(3, 3, 0);
-
-    initMap(map);
-    updateMap(map, robot.pos);
-    printMap(map);
-
-    return 0;
-}
-
-*/
 
