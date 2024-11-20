@@ -45,7 +45,7 @@ void add_child(t_node* parent, t_node* child)
     child->parent = parent;
 }
 
-t_tree* create_tree(t_position loc, t_move move, int cost)
+t_tree *create_tree(t_position loc, t_move move, int cost)
 {
     t_tree* tree = (t_tree*)malloc(sizeof(t_tree));
     if (tree == NULL)
@@ -94,12 +94,12 @@ void free_tree(t_tree* tree)
 t_tree* initialize_tree_with_choices()
 {
     // Create root node
-    t_tree* tree = create_tree((t_position){0, 0}, MOVE_NONE, 0); // Root cost is 0
+    t_tree* tree = create_tree((t_position){0, 0}, NO_MOVE, 0); // Root cost is 0
 
     // Add three child nodes with different costs and positions for testing
-    t_node* child1 = create_node((t_position){1, 1}, MOVE_LEFT, 10);
-    t_node* child2 = create_node((t_position){1, 2}, MOVE_RIGHT, 5);
-    t_node* child3 = create_node((t_position){2, 1}, MOVE_UP, 15);
+    t_node* child1 = create_node((t_position){1, 1}, T_LEFT, 10);
+    t_node* child2 = create_node((t_position){1, 2}, T_RIGHT, 5);
+    t_node* child3 = create_node((t_position){2, 1}, F_10, 15);
 
     // Attach children to the root
     add_child(tree->tree->children[0], child1);
@@ -107,9 +107,9 @@ t_tree* initialize_tree_with_choices()
     add_child(tree->tree->children[0], child3);
 
     // For testing purposes, add child nodes to each of these nodes as well
-    add_child(child1, create_node((t_position){2, 2}, MOVE_LEFT, 8));
-    add_child(child2, create_node((t_position){2, 3}, MOVE_RIGHT, 3));
-    add_child(child3, create_node((t_position){3, 1}, MOVE_UP, 20));
+    add_child(child1, create_node((t_position){2, 2}, T_LEFT, 8));
+    add_child(child2, create_node((t_position){2, 3}, T_RIGHT, 3));
+    add_child(child3, create_node((t_position){3, 1}, F_20, 20));
 
     return tree;
 }
