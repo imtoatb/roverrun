@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "build all",
+        "type": "shell",
+        "command": "gcc",
+        "args": [
+          "*.c",           // Compiles all C files in the folder
+          "-o",            // Output flag
+          "output_program" // Name of the compiled output
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": ["$gcc"],
+        "detail": "Compiles all C files in the folder."
+      }
+    ]
+  }
+  
