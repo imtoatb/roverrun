@@ -61,4 +61,6 @@ void displayMap(t_map);
 
 int getCost(t_map map, t_position pos);
 
+void displayMoveCosts(t_map map, t_localisation robot);
+
 #endif //UNTITLED1_MAP_H

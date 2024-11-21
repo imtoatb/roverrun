@@ -49,9 +49,9 @@ int main() {
     // Example: Get the cost of the starting position
     int cost = getCost(map, (t_position){start_x, start_y});
     if (cost != COST_UNDEF) {
-        printf("The cost at the starting position (%d, %d) is: %d\n", start_x, start_y, cost);
+        printf("The cost at the starting position (%d, %d) is: %d\n\n", start_x, start_y, cost);
     } else {
-        printf("Invalid cost at position (%d, %d). It might be out of bounds or uninitialized.\n", start_x, start_y);
+        printf("Invalid cost at position (%d, %d). It might be out of bounds or uninitialized.\n\n", start_x, start_y);
     }
 
 
@@ -59,10 +59,11 @@ int main() {
 
 
     t_localisation robot = loc_init(start_x, start_y, NORTH);
-    printf("Robot initialized at (%d, %d) facing %s\n", robot.pos.x, robot.pos.y, orientationToString(robot.ori));
+    //printf("Robot initialized at (%d, %d) facing %s\n\n", robot.pos.x, robot.pos.y, orientationToString(robot.ori));
 
 
     // Example movements
+    /*
     robot.pos = UP(robot.pos);
     if (isValidLocalisation(robot.pos, map.x_max, map.y_max)) {
         printf("Robot moved UP to (%d, %d)\n", robot.pos.x, robot.pos.y);
@@ -76,6 +77,9 @@ int main() {
     } else {
         printf("Robot tried to move RIGHT out of bounds.\n");
     }
+    */
+
+    displayMoveCosts(map, robot);
 
     // Find minimum cost leaf
     int min_cost = INT_MAX;
