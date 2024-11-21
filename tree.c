@@ -71,6 +71,8 @@ t_tree *create_tree(t_position loc, t_move move, int cost)
     return tree;
 }
 
+
+
 void free_node(t_node* node)
 {
     if (node->children != NULL)
@@ -168,4 +170,63 @@ int main()
 
     return 0;
 }
+
+
+
+void build_tree(t_node* parent, t_localisation loc, int depth, int max_depth, int (*get_cost)(t_position)) {
+    if (depth == max_depth) {
+        return; // Maximum depth reached
+    }
+
+    for (t_move move = F_10; move <= U_TURN; ++move) { // Iterate through all moves
+        t_localisation new_loc = move(loc, move);
+        int cost = get_cost(new_loc.pos);
+        if (cost < 0) continue; // Skip invalid positions or out-of-bound moves
+
+        t_node* child = create_node(new_loc.pos, move, cost);
+        add_child(parent, child);
+
+        // Recur for the next level
+        build_tree(child, new_loc, depth + 1, max_depth, get_cost);
+    }
+}
+
+t_tree* initialize_tree_with_moves(t_localisation start_loc, int max_depth, int (*get_cost)(t_position)) {
+    // Create root node
+    t_tree* tree = (t_tree*)malloc(sizeof(t_tree));
+    if (!tree) {
+        fprintf(stderr, "Error: malloc failed\n");
+        exit(1);
+    }
+
+    tree->tree = (t_root*)malloc(sizeof(t_root));
+    if (!tree->tree) {
+        fprintf(stderr, "Error: malloc failed\n");
+        exit(1);
+    }
+
+    tree->tree->cost = get_cost(start_loc.pos); // Root cost
+    tree->tree->children = (t_node**)malloc(sizeof(t_node*));
+    if (!tree->tree->children) {
+        fprintf(stderr, "Error: malloc failed\n");
+        exit(1);
+    }
+
+    // Initialize the root node
+    tree->tree->children[0] = create_node(start_loc.pos, NO_MOVE, tree->tree->cost);
+
+    // Recursively build the tree
+    build_tree(tree->tree->children[0], start_loc, 0, max_depth, get_cost);
+
+    return tree;
+}
+
+int get_cost(t_position pos) {
+    if (pos.x < 0 || pos.x >= map_width || pos.y < 0 || pos.y >= map_height) {
+        return -1; // Invalid position
+    }
+    return map.costs[pos.y][pos.x];
+}
+
 */
+

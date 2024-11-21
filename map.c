@@ -301,3 +301,14 @@ void displayMap(t_map map)
     }
     return;
 }
+
+
+int getCost(t_map map, t_position pos)
+{
+    if (!isValidLocalisation(pos, map.x_max, map.y_max))
+    {
+        fprintf(stderr, "Error: Position (%d, %d) is out of bounds\n", pos.x, pos.y);
+        return COST_UNDEF;
+    }
+    return map.costs[pos.y][pos.x];
+}

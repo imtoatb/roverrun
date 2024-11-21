@@ -45,6 +45,16 @@ int main() {
         printf("Invalid starting position (%d, %d). OVER\n", start_x, start_y);
         return -1;
     }
+
+    // Example: Get the cost of the starting position
+    int cost = getCost(map, (t_position){start_x, start_y});
+    if (cost != COST_UNDEF) {
+        printf("The cost at the starting position (%d, %d) is: %d\n", start_x, start_y, cost);
+    } else {
+        printf("Invalid cost at position (%d, %d). It might be out of bounds or uninitialized.\n", start_x, start_y);
+    }
+
+
     t_tree* tree = initialize_tree_with_choices();
 
 
