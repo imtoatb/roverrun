@@ -35,7 +35,10 @@ int main() {
     int start_y;
 
     printf("Choose the start position (x,y) :\n");
-    scanf("%d%d", &start_x, &start_y);
+    if (scanf("%d,%d", &start_x, &start_y) != 2) {
+        printf("Invalid input format. Please use x,y.\n");
+        return -1;
+    }
 
 
     if (!isValidLocalisation((t_position){start_x, start_y}, map.x_max, map.y_max)) {
