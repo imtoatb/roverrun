@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "map.h"
+#include "tree.h"
+#include "moves.h"
 
 int main() {
     t_map map;
@@ -28,5 +30,13 @@ int main() {
         printf("\n");
     }
     displayMap(map);
+
+    t_tree* tree = initialize_tree_with_choices();
+
+    // Print the tree structure
+    print_tree(tree->tree->children[0]);
+
+    // Clean up the tree
+    free_tree(tree);
     return 0;
 }
