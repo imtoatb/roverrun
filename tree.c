@@ -3,6 +3,7 @@
 #include "tree.h"
 #include "moves.h"
 
+
 t_node* create_node(t_position loc, t_move move, int cost)
 {
     t_node* node = (t_node*)malloc(sizeof(t_node));
@@ -114,6 +115,7 @@ t_tree* initialize_tree_with_choices()
     return tree;
 }
 
+
 t_node* find_minimum_cost_leaf(t_node* node, int* min_cost, t_node** min_leaf)
 {
     if (node->possibilities == 0) // Leaf node
@@ -140,7 +142,7 @@ void trace_path_to_leaf(t_node* leaf)
     trace_path_to_leaf(leaf->parent); // Recursive call to trace up to the root
     printf("Position: (%d, %d), Cost: %d\n", leaf->loc.x, leaf->loc.y, leaf->cost);
 }
-
+/*
 int main()
 {
     t_tree* tree = initialize_tree_with_choices();
@@ -166,3 +168,4 @@ int main()
 
     return 0;
 }
+*/

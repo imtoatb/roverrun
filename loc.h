@@ -80,4 +80,6 @@ t_position UP(t_position);
  */
 t_position DOWN(t_position);
 
+const char* orientationToString(t_orientation ori);
+
 #endif //UNTITLED1_LOC_H
