@@ -315,18 +315,27 @@ int getCost(t_map map, t_position pos)
 
 void displayMoveCosts(t_map map, t_localisation robot)
 {
-    t_position positions[4];
-    int costs[4];
-    const char *move_names[4] = {"UP", "DOWN", "LEFT", "RIGHT"};
-    int is_valid_move[4];
-
+    t_position positions[12];
+    int costs[12];
+    const char *move_names[12] = {
+        "UP", "DOWN", "LEFT", "RIGHT",
+        "F_20_UP", "F_20_DOWN", "F_20_LEFT", "F_20_RIGHT",
+        "F_30_UP", "F_30_DOWN", "F_30_LEFT", "F_30_RIGHT"
+    };
+    int is_valid_move[12];
     positions[0] = UP(robot.pos);
     positions[1] = DOWN(robot.pos);
     positions[2] = LEFT(robot.pos);
     positions[3] = RIGHT(robot.pos);
-
-
-    for (int i = 0; i < 4; i++) {
+    positions[4] = UP(UP(robot.pos));
+    positions[5] = DOWN(DOWN(robot.pos));
+    positions[6] = LEFT(LEFT(robot.pos));
+    positions[7] = RIGHT(RIGHT(robot.pos));
+    positions[8] = UP(UP(UP(robot.pos)));
+    positions[9] = DOWN(DOWN(DOWN(robot.pos)));
+    positions[10] = LEFT(LEFT(LEFT(robot.pos)));
+    positions[11] = RIGHT(RIGHT(RIGHT(robot.pos)));
+    for (int i = 0; i < 12; i++) {
         is_valid_move[i] = isValidLocalisation(positions[i], map.x_max, map.y_max);
         if (is_valid_move[i]) {
             costs[i] = getCost(map, positions[i]);
@@ -334,13 +343,12 @@ void displayMoveCosts(t_map map, t_localisation robot)
             costs[i] = COST_UNDEF;
         }
     }
-
     printf("Move Costs for Robot at (%d, %d) facing %s:\n", robot.pos.x, robot.pos.y, orientationToString(robot.ori));
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 12; i++) {
         if (is_valid_move[i]) {
-            printf("%-5s: Valid, Cost: %-5d\n", move_names[i], costs[i]);
+            printf("%-10s: Valid, Cost: %-5d\n", move_names[i], costs[i]);
         } else {
-            printf("%-5s: Invalid Move\n", move_names[i]);
+            printf("%-10s: Invalid Move\n", move_names[i]);
         }
     }
 }
