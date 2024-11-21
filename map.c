@@ -318,9 +318,9 @@ void displayMoveCosts(t_map map, t_localisation robot)
     t_position positions[12];
     int costs[12];
     const char *move_names[12] = {
-        "UP", "DOWN", "LEFT", "RIGHT",
-        "F_20_UP", "F_20_DOWN", "F_20_LEFT", "F_20_RIGHT",
-        "F_30_UP", "F_30_DOWN", "F_30_LEFT", "F_30_RIGHT"
+        "NORTH", "SOUTH", "WEST", "EAST",
+        "F_20_NORTH", "F_20_SOUTH", "F_20_WEST", "F_20_EAST",
+        "F_30_NORTH", "F_30_SOUTH", "F_30_WEST", "F_30_EAST"
     };
     int is_valid_move[12];
     positions[0] = UP(robot.pos);
