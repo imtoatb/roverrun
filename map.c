@@ -8,6 +8,9 @@
 #include "map.h"
 #include "loc.h"
 #include "queue.h"
+#include <limits.h>
+
+#define COST_WARNING_THRESHOLD 10000
 
 /* prototypes of local functions */
 /* local functions are used only in this file, as helper functions */
@@ -350,5 +353,19 @@ void displayMoveCosts(t_map map, t_localisation robot)
         } else {
             printf("%-10s: Invalid Move\n", move_names[i]);
         }
+    }
+}
+
+void checkCurrentCost(t_map map, t_localisation robot) {
+    int current_cost = getCost(map, robot.pos);
+    if (current_cost > COST_WARNING_THRESHOLD) {
+        printf("Game Over: The robot is on a cell with a cost of %d, which exceeds the limit of %d.\n", current_cost, COST_WARNING_THRESHOLD);
+        exit(1);
+    }
+}
+
+void alertMoveCost(int move_cost, const char* move_name) {
+    if (move_cost > COST_WARNING_THRESHOLD) {
+        printf("Warning: Moving %s will cost %d, which could be dangerous for the robot.\n", move_name, move_cost);
     }
 }
