@@ -8,7 +8,7 @@
 #define COST_UNDEF 65535
 
 #include "loc.h"
-
+#include "moves.h"
 
 /**
  * @brief Enum for the possible soils of the map
@@ -61,7 +61,11 @@ void displayMap(t_map);
 
 int getCost(t_map map, t_position pos);
 
-void displayMoveCosts(t_map map, t_localisation robot);
+//void displayMoveCosts(t_map map, t_localisation robot);
 void checkCurrentCost(t_map map, t_localisation robot);
 void alertMoveCost(int move_cost, const char* move_name);
+
+
+void checkValidMove(t_map map, t_localisation robot);
+
 #endif //UNTITLED1_MAP_H

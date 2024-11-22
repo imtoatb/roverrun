@@ -8,7 +8,7 @@
 #include "map.h"
 #include "loc.h"
 #include "queue.h"
-#include <limits.h>
+#include "moves.h"
 
 #define COST_WARNING_THRESHOLD 10000
 
@@ -316,6 +316,7 @@ int getCost(t_map map, t_position pos)
     return map.costs[pos.y][pos.x];
 }
 
+/*
 void displayMoveCosts(t_map map, t_localisation robot)
 {
     t_position positions[12];
@@ -355,6 +356,7 @@ void displayMoveCosts(t_map map, t_localisation robot)
         }
     }
 }
+*/
 
 void checkCurrentCost(t_map map, t_localisation robot) {
     int current_cost = getCost(map, robot.pos);
@@ -369,3 +371,48 @@ void alertMoveCost(int move_cost, const char* move_name) {
         printf("Warning: Moving %s will cost %d, which could be dangerous for the robot.\n", move_name, move_cost);
     }
 }
+
+void checkValidMove(t_map map, t_localisation robot) {
+    t_position positions[12];
+    int costs[12];
+    const char *move_names[12] = {
+        "NORTH", "SOUTH", "WEST", "EAST",
+        "F_20_NORTH", "F_20_SOUTH", "F_20_WEST", "F_20_EAST",
+        "F_30_NORTH", "F_30_SOUTH", "F_30_WEST", "F_30_EAST"
+    };
+
+    positions[0] = UP(robot.pos);
+    positions[1] = DOWN(robot.pos);
+    positions[2] = LEFT(robot.pos);
+    positions[3] = RIGHT(robot.pos);
+    positions[4] = UP(UP(robot.pos));
+    positions[5] = DOWN(DOWN(robot.pos));
+    positions[6] = LEFT(LEFT(robot.pos));
+    positions[7] = RIGHT(RIGHT(robot.pos));
+    positions[8] = UP(UP(UP(robot.pos)));
+    positions[9] = DOWN(DOWN(DOWN(robot.pos)));
+    positions[10] = LEFT(LEFT(LEFT(robot.pos)));
+    positions[11] = RIGHT(RIGHT(RIGHT(robot.pos)));
+
+    for (int i = 0; i < 12; i++) {
+        if (isValidLocalisation(positions[i], map.x_max, map.y_max)) {
+            int cost = getCost(map, positions[i]);
+            if (cost > 10000 || map.soils[positions[i].y][positions[i].x] == CREVASSE) {
+                if (i >= 4 && i < 8) {
+                    printf("%-10s: You going to fall into a crevasse\n", move_names[i]);
+                } else if (i >= 8 && i < 12) {
+                    printf("%-10s: You going to fall into a crevasse\n", move_names[i]);
+                } else {
+                    printf("%-10s: You going to fall into a crevasse or Invalid Move, out of bound\n", move_names[i]);
+                }
+            } else {
+                printf("%-10s: Valid, Cost: %-5d\n", move_names[i], cost);
+            }
+        } else {
+            printf("%-10s: Invalid Move, out of bound\n", move_names[i]);
+        }
+    }
+}
+
+
+

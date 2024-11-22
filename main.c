@@ -8,7 +8,7 @@
 
 int main() {
     t_map map;
-    map = createMapFromFile("../maps/example1.map");
+    map = createMapFromFile("../maps/example2.map");
 
     printf("Map created with dimensions %d x %d\n", map.y_max, map.x_max);
     for (int i = 0; i < map.y_max; i++)
@@ -41,21 +41,25 @@ int main() {
     }
 
 
-    t_tree* tree = initialize_tree_with_choices();
-
-
     t_localisation robot = loc_init(start_x, start_y, NORTH);
     printf("Robot initialized at (%d, %d) facing %s\n\n", robot.pos.x, robot.pos.y, orientationToString(robot.ori));
 
 
 
 
-    displayMoveCosts(map, robot);
+    //displayMoveCosts(map, robot);
 
+    printf("\n");
+    checkValidMove(map, robot);
+    printf("\n\n");
+
+    t_tree* tree = initialize_tree_with_choices();
     // Find minimum cost leaf
     int min_cost = INT_MAX;
     t_node* min_leaf = NULL;
     min_leaf = find_minimum_cost_leaf(tree->tree->children[0], &min_cost, &min_leaf);
+
+
 
     if (min_leaf != NULL)
     {
