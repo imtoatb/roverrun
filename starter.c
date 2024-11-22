@@ -34,3 +34,25 @@ int initialize_start_position(t_map map, int* start_x, int* start_y) {
 
     return 0; // Success
 }
+
+
+void testMovements(t_localisation* robot, t_map map) {
+    // Test movement UP
+    robot->pos = UP(robot->pos);
+    if (isValidLocalisation(robot->pos, map.x_max, map.y_max)) {
+        printf("Robot moved UP to (%d, %d)\n", robot->pos.x, robot->pos.y);
+    } else {
+        printf("Robot tried to move UP out of bounds.\n");
+    }
+
+    // Test movement RIGHT
+    robot->pos = RIGHT(robot->pos);
+    if (isValidLocalisation(robot->pos, map.x_max, map.y_max)) {
+        printf("Robot moved RIGHT to (%d, %d)\n", robot->pos.x, robot->pos.y);
+    } else {
+        printf("Robot tried to move RIGHT out of bounds.\n");
+    }
+}
+
+
+

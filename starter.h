@@ -7,5 +7,7 @@
 #include "map.h"
 
 int initialize_start_position(t_map map, int* start_x, int* start_y);
+void testMovements(t_localisation* robot, t_map map);
+
 
 #endif //STARTER_H

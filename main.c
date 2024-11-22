@@ -71,24 +71,7 @@ int main() {
     // Clean up the tree
     free_tree(tree);
 
-
-
-    // Example movements --------------------------------------------------------------------------------------------------------------------------------//
-    /*
-    robot.pos = UP(robot.pos);
-    if (isValidLocalisation(robot.pos, map.x_max, map.y_max)) {
-        printf("Robot moved UP to (%d, %d)\n", robot.pos.x, robot.pos.y);
-    } else {
-        printf("Robot tried to move UP out of bounds.\n");
-    }
-
-    robot.pos = RIGHT(robot.pos);
-    if (isValidLocalisation(robot.pos, map.x_max, map.y_max)) {
-        printf("Robot moved RIGHT to (%d, %d)\n", robot.pos.x, robot.pos.y);
-    } else {
-        printf("Robot tried to move RIGHT out of bounds.\n");
-    }
-    */
+    //testMovements(&robot, map);
 
     return 0;
 }
