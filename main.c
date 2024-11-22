@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "map.h"
 #include "tree.h"
-
+#include <limits.h>
 #include "moves.h"
 
 
@@ -9,7 +9,7 @@ int main() {
     t_map map;
 
     // Test
-    map = createMapFromFile("../maps/training.map");
+    map = createMapFromFile("maps/training.map");
 
     printf("Map created with dimensions %d x %d\n", map.y_max, map.x_max);
     for (int i = 0; i < map.y_max; i++)
@@ -96,15 +96,11 @@ int main() {
     {
         printf("No leaf found in the tree.\n");
     }
-
-    // Clean up the tree
-    free_tree(tree);
-
-    t_tree* tree = initialize_tree_with_choices();
-
     // Print the tree structure
     print_tree(tree->tree->children[0]);
 
+    // Clean up the tree
+    free_tree(tree);
     // Clean up the tree
     free_tree(tree);
 
