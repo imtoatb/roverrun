@@ -6,7 +6,6 @@
 #define STARTER_H
 #include "map.h"
 
-
 int initialize_start_position(t_map map, int* start_x, int* start_y);
 
 #endif //STARTER_H
