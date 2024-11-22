@@ -40,3 +40,6 @@ gcc -o robot main.c map.c loc.c starter.c tree.c -I.
 
 #### Agathe POUILLAUDE - Julien BOUDJEDID
 #### Feel free to contribute via pull requests!
+
+***
+### Bye !
