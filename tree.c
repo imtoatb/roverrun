@@ -4,6 +4,7 @@
 #include "tree.h"
 #include "moves.h"
 
+
 t_node* create_node(t_position loc, t_move move, int cost)
 {
     t_node* node = (t_node*)malloc(sizeof(t_node));
@@ -46,7 +47,7 @@ void add_child(t_node* parent, t_node* child)
     child->parent = parent;
 }
 
-t_tree* create_tree(t_position loc, t_move move, int cost)
+t_tree *create_tree(t_position loc, t_move move, int cost)
 {
     t_tree* tree = (t_tree*)malloc(sizeof(t_tree));
     if (tree == NULL)
@@ -70,6 +71,8 @@ t_tree* create_tree(t_position loc, t_move move, int cost)
     tree->tree->cost = cost;
     return tree;
 }
+
+
 
 void free_node(t_node* node)
 {
@@ -95,7 +98,9 @@ void free_tree(t_tree* tree)
 t_tree* initialize_tree_with_choices()
 {
     // Create root node
-    t_tree* tree = create_tree((t_position){0, 0}, F_10, 0); // Root cost is 0
+
+    t_tree* tree = create_tree((t_position){0, 0}, NO_MOVE, 0); // Root cost is 0
+
 
     // Add three child nodes with different costs and positions for testing
     t_node* child1 = create_node((t_position){1, 1}, T_LEFT, 10);
@@ -109,8 +114,9 @@ t_tree* initialize_tree_with_choices()
 
     // For testing purposes, add child nodes to each of these nodes as well
     add_child(child1, create_node((t_position){2, 2}, T_LEFT, 8));
-    add_child(child2, create_node((t_position){2, 3}, F_20, 3));
-    add_child(child3, create_node((t_position){3, 1}, F_30, 20));
+    add_child(child2, create_node((t_position){2, 3}, T_RIGHT, 3));
+    add_child(child3, create_node((t_position){3, 1}, F_20, 20));
+
 
     return tree;
 }
@@ -142,6 +148,7 @@ void trace_path_to_leaf(t_node* leaf)
     trace_path_to_leaf(leaf->parent); // Recursive call to trace up to the root
     printf("Position: (%d, %d), Cost: %d\n", leaf->loc.x, leaf->loc.y, leaf->cost);
 }
+
 
 void print_tree_recursive(t_node* node, char* prefix, int is_last)
 {
@@ -176,3 +183,4 @@ void print_tree(t_node* root)
     printf("Tree structure:\n");
     print_tree_recursive(root, "", 1);
 }
+
