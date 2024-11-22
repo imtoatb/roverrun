@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "tree.h"
 #include "moves.h"
 
@@ -97,7 +98,9 @@ void free_tree(t_tree* tree)
 t_tree* initialize_tree_with_choices()
 {
     // Create root node
+
     t_tree* tree = create_tree((t_position){0, 0}, NO_MOVE, 0); // Root cost is 0
+
 
     // Add three child nodes with different costs and positions for testing
     t_node* child1 = create_node((t_position){1, 1}, T_LEFT, 10);
@@ -113,6 +116,7 @@ t_tree* initialize_tree_with_choices()
     add_child(child1, create_node((t_position){2, 2}, T_LEFT, 8));
     add_child(child2, create_node((t_position){2, 3}, T_RIGHT, 3));
     add_child(child3, create_node((t_position){3, 1}, F_20, 20));
+
 
     return tree;
 }
@@ -144,3 +148,39 @@ void trace_path_to_leaf(t_node* leaf)
     trace_path_to_leaf(leaf->parent); // Recursive call to trace up to the root
     printf("Position: (%d, %d), Cost: %d\n", leaf->loc.x, leaf->loc.y, leaf->cost);
 }
+
+
+void print_tree_recursive(t_node* node, char* prefix, int is_last)
+{
+    if (node == NULL) return;
+
+    // Print current node with ASCII characters
+    printf("%s", prefix);
+    printf(is_last ? "`-- " : "|-- ");
+    printf("Position: (%d, %d), Cost: %d\n", node->loc.x, node->loc.y, node->cost);
+
+    // Update the prefix for children
+    char new_prefix[256];
+    strcpy(new_prefix, prefix);
+    strcat(new_prefix, is_last ? "    " : "|   ");
+
+    // Recursively print children
+    for (int i = 0; i < node->possibilities; i++)
+    {
+        print_tree_recursive(node->children[i], new_prefix, i == node->possibilities - 1);
+    }
+}
+
+
+void print_tree(t_node* root)
+{
+    if (root == NULL)
+    {
+        printf("Tree is empty.\n");
+        return;
+    }
+
+    printf("Tree structure:\n");
+    print_tree_recursive(root, "", 1);
+}
+
