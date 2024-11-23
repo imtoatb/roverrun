@@ -61,8 +61,8 @@ int main() {
     int rows = mapwork.x_max;
     config.cols = cols;
     config.rows = rows;
-    /*config.max_cost = (int)sqrt(mapwork.x_max * mapwork.y_max);
-    printf("Max cost is %d\n", config.max_cost);*/
+    config.max_cost = mapwork.x_max * mapwork.y_max;
+    printf("Max cost is %d\n", config.max_cost);
 
     int startX = 0, startY = 0;  // Starting position
     int targetTile = 0;          // Target tile value (e.g., find "1" on the map)
