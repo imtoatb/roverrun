@@ -395,58 +395,44 @@ void checkValidMove(t_map map, t_localisation robot) {
     positions[11] = RIGHT(RIGHT(RIGHT(robot.pos)));
 
 
-    for (int i = 0; i < 12; i++) {
+for (int i = 0; i < 12; i++) {
         if (isValidLocalisation(positions[i], map.x_max, map.y_max)) {
             int cost = getCost(map, positions[i]);
 
-            // If the cost is too high (crevasse) or position contains a crevasse
+            // Si le coût est trop élevé (crevasse) ou la position contient une crevasse
             if (cost > 9999 || map.soils[positions[i].y][positions[i].x] == CREVASSE) {
-                if (i >= 4 && i < 8) {  // F_20 moves (positions 4-7)
-                    t_position prev_position;
+                printf("%-10s: Invalid, You'll fall into a crevasse if you do this move\n", move_names[i]);
+            } else if (i >= 4 && i < 8) {  // F_20 moves (positions 4-7)
+                t_position prev_position = (i == 4) ? UP(robot.pos) :
+                                           (i == 5) ? DOWN(robot.pos) :
+                                           (i == 6) ? LEFT(robot.pos) : RIGHT(robot.pos);
 
-                    if (i == 4) {
-                        prev_position = UP(robot.pos);
-                    } else if (i == 5) {
-                        prev_position = DOWN(robot.pos);
-                    } else if (i == 6) {
-                        prev_position = LEFT(robot.pos);
-                    } else {
-                        prev_position = RIGHT(robot.pos);
-                    }
+                if (getCost(map, prev_position) > 9999 || map.soils[prev_position.y][prev_position.x] == CREVASSE) {
+                    printf("%-10s: Invalid, You'll fall into a crevasse if you do this move\n", move_names[i]);
+                } else {
+                    printf("%-10s: Valid, Cost: %-5d\n", move_names[i], cost);
+                }
+            } else if (i >= 8 && i < 12) { // F_30 moves (positions 8-11)
+                t_position prev_position1, prev_position2;
+                if (i == 8) {
+                    prev_position1 = UP(UP(robot.pos));
+                    prev_position2 = UP(robot.pos);
+                } else if (i == 9) {
+                    prev_position1 = DOWN(DOWN(robot.pos));
+                    prev_position2 = DOWN(robot.pos);
+                } else if (i == 10) {
+                    prev_position1 = LEFT(LEFT(robot.pos));
+                    prev_position2 = LEFT(robot.pos);
+                } else {
+                    prev_position1 = RIGHT(RIGHT(robot.pos));
+                    prev_position2 = RIGHT(robot.pos);
+                }
 
-
-                    if (map.soils[prev_position.y][prev_position.x] == CREVASSE) {
-                        printf("%-10s: Invalid, previous position is a crevasse\n", move_names[i]);
-                        printf("If you move here, you'll pass over a crevasse and die.\n");
-                    } else {
-                        printf("%-10s: Valid, Cost: %-5d\n", move_names[i], cost);
-                    }
-                } else if (i >= 8 && i < 12) { // F_30 moves (positions 8-11)
-                    t_position prev_position1, prev_position2;
-
-
-                    if (i == 8) {
-                        prev_position1 = UP(UP(robot.pos));
-                        prev_position2 = UP(robot.pos);
-                    } else if (i == 9) {
-                        prev_position1 = DOWN(DOWN(robot.pos));
-                        prev_position2 = DOWN(robot.pos);
-                    } else if (i == 10) {
-                        prev_position1 = LEFT(LEFT(LEFT(robot.pos)));
-                        prev_position2 = LEFT(LEFT(robot.pos));
-                    } else {
-                        prev_position1 = RIGHT(RIGHT(RIGHT(robot.pos)));
-                        prev_position2 = RIGHT(RIGHT(robot.pos));
-                    }
-
-                    // Check if either of the previous positions is a crevasse
-                    if (map.soils[prev_position1.y][prev_position1.x] == CREVASSE ||
-                        map.soils[prev_position2.y][prev_position2.x] == CREVASSE) {
-                        printf("%-10s: Invalid, one of the previous positions is a crevasse\n", move_names[i]);
-                        printf("If you move here, you'll pass over a crevasse and die.\n");
-                    } else {
-                        printf("%-10s: Valid, Cost: %-5d\n", move_names[i], cost);
-                    }
+                if (getCost(map, prev_position1) > 9999 || map.soils[prev_position1.y][prev_position1.x] == CREVASSE ||
+                    getCost(map, prev_position2) > 9999 || map.soils[prev_position2.y][prev_position2.x] == CREVASSE) {
+                    printf("%-10s: Invalid, You'll fall into a crevasse if you do this move\n", move_names[i]);
+                } else {
+                    printf("%-10s: Valid, Cost: %-5d\n", move_names[i], cost);
                 }
             } else {
                 printf("%-10s: Valid, Cost: %-5d\n", move_names[i], cost);
