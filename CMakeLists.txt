@@ -1,9 +1,11 @@
 cmake_minimum_required(VERSION 3.27)
-project(untitled1 C)
+project(CC C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(untitled1 main.c
+add_executable(CC main.c
+        pathfinding.h
+        pathfinding.c
         loc.c
         loc.h
         moves.c
@@ -13,4 +15,5 @@ add_executable(untitled1 main.c
         queue.c
         queue.h
         stack.c
-        stack.h)
+        stack.h
+)

@@ -1,0 +1,37 @@
+#ifndef PATHFINDING_H
+#define PATHFINDING_H
+
+#include <math.h>  // For sqrt
+
+// Constants
+#define ROWS 7
+#define COLS 6
+#define MAX_COST 12
+#define MAX_PATHS 3
+#define JUMP_COST_THRESHOLD 20  // Max cost of tiles that can be jumped over
+
+// Structs
+typedef struct {
+    char move[4];  // Array for move description (e.g., "2JD" for 2 tiles Jump Down)
+    int terrainCost;  // Terrain cost at this step
+    int totalCost;    // Cumulative total cost at this step
+} Node;
+
+typedef struct {
+    Node path[ROWS * COLS];
+    int cost;
+    int length;
+} Path;
+
+// External variables
+extern int visited[ROWS][COLS];
+extern Path allPaths[MAX_PATHS];
+extern int pathIndex;
+
+// Function declarations
+int comparePaths(const void *a, const void *b);
+int isJumpValid(int x1, int y1, int x2, int y2, int jumpLength, int map[ROWS][COLS]);
+void dfs(int x, int y, int currentCost, int map[ROWS][COLS], int targetTile, Path currentPath, int isStart);
+void printPath(Path path);
+
+#endif // PATHFINDING_H

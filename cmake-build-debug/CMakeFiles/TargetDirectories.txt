@@ -1,0 +1,3 @@
+C:/Users/jboud/Desktop/CC good stuffd/working - Copy/cmake-build-debug/CMakeFiles/CC.dir
+C:/Users/jboud/Desktop/CC good stuffd/working - Copy/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/jboud/Desktop/CC good stuffd/working - Copy/cmake-build-debug/CMakeFiles/rebuild_cache.dir
