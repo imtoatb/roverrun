@@ -65,6 +65,21 @@ int main() {
     printf("Max cost is %d\n", config.max_cost);
 
     int startX = 0, startY = 0;  // Starting position
+
+
+    int start_x;
+    int start_y;
+
+    //In starter.c
+    if (initialize_start_position(mapwork, &start_x, &start_y) == -1) {
+        return -1;
+    }
+
+
+    t_localisation robot = loc_init(start_x, start_y, NORTH);
+    printf("Robot initialized at (%d, %d) facing %s\n\n", robot.pos.x, robot.pos.y, orientationToString(robot.ori));
+
+
     int targetTile = 0;          // Target tile value (e.g., find "1" on the map)
 
     // Clear the allPaths array
@@ -79,8 +94,8 @@ int main() {
     currentPath.cost = 0;
 
     // Perform DFS to find paths
-    printf("Finding paths from (%d, %d) to target tile %d...\n\n", startX, startY, targetTile);
-    dfs(startX, startY, 0, map, targetTile, currentPath, 1);
+    printf("Finding paths from (%d, %d) to target tile %d...\n\n", start_x, start_y, targetTile);
+    dfs(start_x, start_y, 0, map, targetTile, currentPath, 1);
 
     // Print the results
     printf("Top %d shortest paths found:\n", config.max_paths);
@@ -92,6 +107,13 @@ int main() {
             printf("Path %d: No valid path found.\n", i + 1);
         }
     }
+
+
+    //displayMoveCosts(map, robot);
+
+    printf("\n");
+    checkValidMove(mapwork, robot);
+    printf("\n\n");
 
     return 0;
 }
