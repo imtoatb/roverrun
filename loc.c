@@ -50,3 +50,12 @@ t_position DOWN(t_position pos)
     return new_pos;
 }
 
+const char* orientationToString(t_orientation ori) {
+    switch (ori) {
+        case NORTH: return "NORTH";
+        case EAST: return "EAST";
+        case SOUTH: return "SOUTH";
+        case WEST: return "WEST";
+        default: return "UNKNOWN";
+    }
+}
