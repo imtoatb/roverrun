@@ -9,7 +9,7 @@ int main() {
     t_map map;
 
     // Test
-    map = createMapFromFile("maps/training.map");
+    map = createMapFromFile("../maps/training.map");
 
     printf("Map created with dimensions %d x %d\n", map.y_max, map.x_max);
     for (int i = 0; i < map.y_max; i++)
