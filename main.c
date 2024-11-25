@@ -29,7 +29,7 @@ int main() {
 
     t_map mapwork;
 
-    mapwork = createMapFromFile("maps\\example1.map");
+    mapwork = createMapFromFile("../maps\\example1.map");
 
 
     printf("Map created with dimensions %d x %d\n", mapwork.y_max, mapwork.x_max);
@@ -51,7 +51,7 @@ int main() {
         printf("\n");
     }
     // Now define the map array for costs
-    int map[7][6] = {0}; // Make sure to initialize the map array
+    int map[7][6] = {0};                                                // Make sure to initialize the map array
 
     // Copy costs from mapwork into the map array
     for (int i = 0; i < mapwork.y_max; i++) {
@@ -68,7 +68,7 @@ int main() {
     config.max_cost = mapwork.x_max * mapwork.y_max;
     printf("Max cost is %d\n", config.max_cost);
 
-    int startX = 0, startY = 0;  // Starting position
+    int startX = 0, startY = 0;                                       // Starting position
 
 
     int start_x;
@@ -84,12 +84,12 @@ int main() {
     printf("Robot initialized at (%d, %d) facing %s\n\n", robot.pos.x, robot.pos.y, orientationToString(robot.ori));
 
 
-    int targetTile = 0;          // Target tile value (e.g., find "1" on the map)
+    int targetTile = 0;                                             // Target tile value (e.g., find "1" on the map)
 
     // Clear the allPaths array
     for (int i = 0; i < config.max_paths; i++) {
         allPaths[i].length = 0;
-        allPaths[i].cost = config.max_cost; // Initialize to max cost
+        allPaths[i].cost = config.max_cost;                         // Initialize to max cost
     }
 
     // Initialize a Path object for tracking the current path
@@ -100,6 +100,13 @@ int main() {
     // Perform DFS to find paths
     printf("Finding paths from (%d, %d) to target tile %d...\n\n", start_x, start_y, targetTile);
     dfs(start_x, start_y, 0, map, targetTile, currentPath, 1);
+
+
+    printf("\n");
+    checkValidMove(mapwork, robot);
+    printf("\n\n");
+
+
 
     // Print the results
     printf("Top %d shortest paths found:\n", config.max_paths);
@@ -112,12 +119,6 @@ int main() {
         }
     }
 
-
-    //displayMoveCosts(map, robot);
-
-    printf("\n");
-    checkValidMove(mapwork, robot);
-    printf("\n\n");
 
     return 0;
 }
