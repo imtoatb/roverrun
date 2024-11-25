@@ -3,7 +3,9 @@ project(untitled1 C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(untitled1 main.c
+add_executable(CC main.c
+        pathfinding.h
+        pathfinding.c
         loc.c
         loc.h
         moves.c
@@ -16,4 +18,6 @@ add_executable(untitled1 main.c
         stack.h
         tree.h
         tree.c
+        starter.c
+        starter.h
 )

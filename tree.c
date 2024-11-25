@@ -98,9 +98,7 @@ void free_tree(t_tree* tree)
 t_tree* initialize_tree_with_choices()
 {
     // Create root node
-
     t_tree* tree = create_tree((t_position){0, 0}, NO_MOVE, 0); // Root cost is 0
-
 
     // Add three child nodes with different costs and positions for testing
     t_node* child1 = create_node((t_position){1, 1}, T_LEFT, 10);
@@ -149,7 +147,7 @@ void trace_path_to_leaf(t_node* leaf)
     printf("Position: (%d, %d), Cost: %d\n", leaf->loc.x, leaf->loc.y, leaf->cost);
 }
 
-
+/*
 void print_tree_recursive(t_node* node, char* prefix, int is_last)
 {
     if (node == NULL) return;
@@ -183,4 +181,4 @@ void print_tree(t_node* root)
     printf("Tree structure:\n");
     print_tree_recursive(root, "", 1);
 }
-
+*/
