@@ -306,6 +306,9 @@ void displayMap(t_map map)
 }
 
 
+
+//---------------------------------------------------------------------------------------------------------------//
+
 int getCost(t_map map, t_position pos)
 {
     if (!isValidLocalisation(pos, map.x_max, map.y_max))
@@ -316,47 +319,7 @@ int getCost(t_map map, t_position pos)
     return map.costs[pos.y][pos.x];
 }
 
-/*
-void displayMoveCosts(t_map map, t_localisation robot)
-{
-    t_position positions[12];
-    int costs[12];
-    const char *move_names[12] = {
-        "NORTH", "SOUTH", "WEST", "EAST",
-        "F_20_NORTH", "F_20_SOUTH", "F_20_WEST", "F_20_EAST",
-        "F_30_NORTH", "F_30_SOUTH", "F_30_WEST", "F_30_EAST"
-    };
-    int is_valid_move[12];
-    positions[0] = UP(robot.pos);
-    positions[1] = DOWN(robot.pos);
-    positions[2] = LEFT(robot.pos);
-    positions[3] = RIGHT(robot.pos);
-    positions[4] = UP(UP(robot.pos));
-    positions[5] = DOWN(DOWN(robot.pos));
-    positions[6] = LEFT(LEFT(robot.pos));
-    positions[7] = RIGHT(RIGHT(robot.pos));
-    positions[8] = UP(UP(UP(robot.pos)));
-    positions[9] = DOWN(DOWN(DOWN(robot.pos)));
-    positions[10] = LEFT(LEFT(LEFT(robot.pos)));
-    positions[11] = RIGHT(RIGHT(RIGHT(robot.pos)));
-    for (int i = 0; i < 12; i++) {
-        is_valid_move[i] = isValidLocalisation(positions[i], map.x_max, map.y_max);
-        if (is_valid_move[i]) {
-            costs[i] = getCost(map, positions[i]);
-        } else {
-            costs[i] = COST_UNDEF;
-        }
-    }
-    printf("Move Costs for Robot at (%d, %d) facing %s:\n", robot.pos.x, robot.pos.y, orientationToString(robot.ori));
-    for (int i = 0; i < 12; i++) {
-        if (is_valid_move[i]) {
-            printf("%-10s: Valid, Cost: %-5d\n", move_names[i], costs[i]);
-        } else {
-            printf("%-10s: Invalid Move\n", move_names[i]);
-        }
-    }
-}
-*/
+
 
 void checkCurrentCost(t_map map, t_localisation robot) {
     int current_cost = getCost(map, robot.pos);
@@ -399,7 +362,7 @@ for (int i = 0; i < 12; i++) {
         if (isValidLocalisation(positions[i], map.x_max, map.y_max)) {
             int cost = getCost(map, positions[i]);
 
-            // Si le coût est trop élevé (crevasse) ou la position contient une crevasse
+            // if cost > 10000 or CREVASSE
             if (cost > 9999 || map.soils[positions[i].y][positions[i].x] == CREVASSE) {
                 printf("%-10s: Invalid, You'll fall into a crevasse if you do this move\n", move_names[i]);
             } else if (i >= 4 && i < 8) {  // F_20 moves (positions 4-7)

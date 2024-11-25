@@ -6,12 +6,12 @@
 #define COLS 6
 #define MAX_COST 12
 #define MAX_PATHS 3
-#define JUMP_COST_THRESHOLD 20  // Max cost of tiles that can be jumped over
+#define JUMP_COST_THRESHOLD 20        // Max cost of tiles that can be jumped over
 
 typedef struct {
-    char move[4];  // Array for move description (e.g., "2JD" for 2 tiles Jump Down)
-    int terrainCost;  // Terrain cost at this step
-    int totalCost;    // Cumulative total cost at this step
+    char move[4];                     // Array for move description (e.g., "2JD" for 2 tiles Jump Down)
+    int terrainCost;                  // Terrain cost at this step
+    int totalCost;                    // Cumulative total cost at this step
 } Node;
 
 typedef struct {
@@ -21,7 +21,7 @@ typedef struct {
 } Path;
 
 int visited[ROWS][COLS] = {0};
-Path allPaths[MAX_PATHS]; // Store the top 3 paths
+Path allPaths[MAX_PATHS];              // Store the top 3 paths
 int pathIndex = 0;
 
 int comparePaths(const void *a, const void *b) {
@@ -30,12 +30,12 @@ int comparePaths(const void *a, const void *b) {
 
 int isJumpValid(int x1, int y1, int x2, int y2, int jumpLength, int map[ROWS][COLS]) {
     // Check if the skipped tiles have cost <= JUMP_COST_THRESHOLD
-    if (x1 == x2) {  // Horizontal jump
+    if (x1 == x2) {                                                                      // Horizontal jump
         int minY = y1 < y2 ? y1 : y2;
         int maxY = y1 > y2 ? y1 : y2;
         for (int y = minY + 1; y < maxY; y++) {
             if (map[x1][y] > JUMP_COST_THRESHOLD) {
-                return 0; // Invalid jump due to high terrain cost
+                return 0;                                                                 // Invalid jump due to high terrain cost
             }
         }
     } else if (y1 == y2) {  // Vertical jump
@@ -43,11 +43,11 @@ int isJumpValid(int x1, int y1, int x2, int y2, int jumpLength, int map[ROWS][CO
         int maxX = x1 > x2 ? x1 : x2;
         for (int x = minX + 1; x < maxX; x++) {
             if (map[x][y1] > JUMP_COST_THRESHOLD) {
-                return 0; // Invalid jump due to high terrain cost
+                return 0;                                                                 // Invalid jump due to high terrain cost
             }
         }
     }
-    return 1; // Jump is valid
+    return 1;                                                                             // Jump is valid
 }
 
 void dfs(int x, int y, int currentCost, int map[ROWS][COLS], int targetTile, Path currentPath, int isStart) {
@@ -59,7 +59,7 @@ void dfs(int x, int y, int currentCost, int map[ROWS][COLS], int targetTile, Pat
 
     // Check if the current path length exceeds the maximum allowed movements
     if (currentPath.length >= maxMovements) {
-        return;  // Stop if the path exceeds the length limit
+        return;                                                                          // Stop if the path exceeds the length limit
     }
 
     // If the target tile is found, store the path
@@ -181,10 +181,9 @@ int main() {
         {10, 8, 9, 10014, 10, 11}
     };
 
-    // Print map
+
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
-            // if large number print x instead, if not print value
             printf("%d ", map[i][j] > 10000 ? -1 : map[i][j]);
         }
         printf("\n");
@@ -196,7 +195,7 @@ int main() {
 
     // Initialize allPaths with high cost
     for (int i = 0; i < MAX_PATHS; i++) {
-        allPaths[i].cost = 1000000; // An arbitrary large number to ensure proper sorting
+        allPaths[i].cost = 1000000;                                 // An arbitrary large number to ensure proper sorting
         allPaths[i].length = 0;
     }
 

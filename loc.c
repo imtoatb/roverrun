@@ -13,7 +13,7 @@ t_localisation loc_init(int x, int y, t_orientation ori)
     return loc;
 }
 
-int isValidLocalisation(t_position loc, int x_max, int y_max)
+int isValidLocalisation(t_position loc, int x_max, int y_max)                   //If outside the map, return false
 {
     return (loc.x >= 0 && loc.x < x_max && loc.y >= 0 && loc.y < y_max);
 }
@@ -50,12 +50,19 @@ t_position DOWN(t_position pos)
     return new_pos;
 }
 
+
+//Instead of having numbers when displaying
 const char* orientationToString(t_orientation ori) {
     switch (ori) {
-        case NORTH: return "NORTH";
-        case EAST: return "EAST";
-        case SOUTH: return "SOUTH";
-        case WEST: return "WEST";
-        default: return "UNKNOWN";
+        case NORTH:
+            return "NORTH";
+        case EAST:
+            return "EAST";
+        case SOUTH:
+            return "SOUTH";
+        case WEST:
+            return "WEST";
+        default:
+            return "UNKNOWN";
     }
 }

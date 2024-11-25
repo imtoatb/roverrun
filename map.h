@@ -61,7 +61,6 @@ void displayMap(t_map);
 
 int getCost(t_map map, t_position pos);
 
-//void displayMoveCosts(t_map map, t_localisation robot);
 void checkCurrentCost(t_map map, t_localisation robot);
 void alertMoveCost(int move_cost, const char* move_name);
 

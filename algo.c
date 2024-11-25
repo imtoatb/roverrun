@@ -16,8 +16,7 @@ t_tree* find_three_shortest_paths(t_map map, t_position target)
         t_position current = dequeue(&queue);
         int current_cost = map.costs[current.y][current.x];
 
-        // If we've reached the target, stop processing further
-        if (current.x == target.x && current.y == target.y)
+        if (current.x == target.x && current.y == target.y)                        // If we've reached the target, stop processing further
             break;
 
         // Check neighbors

@@ -1,11 +1,8 @@
 #include <stdio.h>
-#include "pathfinding.h"
 #include <math.h>
-#include "map.h"
-#include "tree.h"
-#include <limits.h>
-#include "moves.h"
 
+#include "pathfinding.h"
+#include "map.h"
 #include "tree.h"
 #include "loc.h"
 
@@ -25,41 +22,43 @@ int maptest[7][6] = {
     {10, 8, 9, 10014, 10, 11}
 };
 
-
+//Global function
 t_map mapwork;
-int initialize_start_position(t_map mapwork, int * start_x, int * start_y); //Global function
+int num_maps;
+int choice;
+int initialize_start_position(t_map mapwork, int * start_x, int * start_y);
 
 int main() {
 
     //mapwork = createMapFromFile("../maps\\example1.map");
 
-    const char *map_files[MAX_MAPS] = {
+    const char *map_files[MAX_MAPS] = {                             //To enable the user to choose the map
         "../maps/example1.map",
         "../maps/example2.map",
         "../maps/example3.map",
         "../maps/example4.map"
     };
-    int num_maps = 4;                                               // Update this if more maps are added
+    num_maps = 4;                                                   //Update this if more maps are added
 
-    // Display the menu
+
+    //Menu + Input
     printf("Choose a map to load:\n");
     for (int i = 0; i < num_maps; i++) {
         printf("[%d] %s\n", i + 1, map_files[i]);
     }
     printf("Enter the number of the map you want to use: ");
 
-    // Get user input
-    int choice;
+
     if (scanf("%d", &choice) != 1 || choice < 1 || choice > num_maps) {
         printf("Invalid choice. Exiting...\n");
         return -1;
     }
 
-    // Load the chosen map
-    const char *selected_map = map_files[choice - 1];               // Declare and initialize `selected_map`
+
+    //Load the map
+    const char *selected_map = map_files[choice - 1];               //Declare and initialize `selected_map`
     printf("Loading map: %s\n", selected_map);
 
-    // Use the globally declared `mapwork`
     mapwork = createMapFromFile(selected_map);
     if (mapwork.soils == NULL) {
         printf("Failed to load map. Exiting...\n");
@@ -78,17 +77,18 @@ int main() {
         }
         printf("\n");
     }
-    // printf the costs, aligned left 5 digits
+
     for (int i = 0; i < mapwork.y_max; i++)
     {
         for (int j = 0; j < mapwork.x_max; j++)
         {
-            printf("%-5d ", mapwork.costs[i][j]);
+            printf("%-5d ", mapwork.costs[i][j]);                  //Printf the costs, aligned left 5 digits
         }
         printf("\n");
     }
-    // Now define the map array for costs
-    int map[7][6] = {0};                                                // Make sure to initialize the map array
+
+
+    int map[7][6] = {0};                                                //Make sure to initialize the map array
 
     // Copy costs from mapwork into the map array
     for (int i = 0; i < mapwork.y_max; i++) {
@@ -97,7 +97,8 @@ int main() {
         }
     }
     displayMap(mapwork);
-    //the map has been displayed
+
+
     int cols = mapwork.y_max;
     int rows = mapwork.x_max;
     config.cols = cols;
@@ -105,9 +106,8 @@ int main() {
     config.max_cost = mapwork.x_max * mapwork.y_max;
     printf("Max cost is %d\n", config.max_cost);
 
-    int startX = 0, startY = 0;                                       // Starting position
 
-
+    // Starting position
     int start_x;
     int start_y;
 
