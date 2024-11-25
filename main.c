@@ -9,7 +9,7 @@
 #include "tree.h"
 #include "loc.h"
 
-
+#define MAX_MAPS 10
 
 // Define and initialize the configuration
 Config config = {7, 6, 12, 3, 20};
@@ -25,11 +25,48 @@ int maptest[7][6] = {
     {10, 8, 9, 10014, 10, 11}
 };
 
+
+t_map mapwork;
+int initialize_start_position(t_map mapwork, int * start_x, int * start_y); //Global function
+
 int main() {
 
-    t_map mapwork;
+    //mapwork = createMapFromFile("../maps\\example1.map");
 
-    mapwork = createMapFromFile("../maps\\example1.map");
+    const char *map_files[MAX_MAPS] = {
+        "../maps/example1.map",
+        "../maps/example2.map",
+        "../maps/example3.map",
+        "../maps/example4.map"
+    };
+    int num_maps = 4;                                               // Update this if more maps are added
+
+    // Display the menu
+    printf("Choose a map to load:\n");
+    for (int i = 0; i < num_maps; i++) {
+        printf("[%d] %s\n", i + 1, map_files[i]);
+    }
+    printf("Enter the number of the map you want to use: ");
+
+    // Get user input
+    int choice;
+    if (scanf("%d", &choice) != 1 || choice < 1 || choice > num_maps) {
+        printf("Invalid choice. Exiting...\n");
+        return -1;
+    }
+
+    // Load the chosen map
+    const char *selected_map = map_files[choice - 1];               // Declare and initialize `selected_map`
+    printf("Loading map: %s\n", selected_map);
+
+    // Use the globally declared `mapwork`
+    mapwork = createMapFromFile(selected_map);
+    if (mapwork.soils == NULL) {
+        printf("Failed to load map. Exiting...\n");
+        return -1;
+    }
+
+
 
 
     printf("Map created with dimensions %d x %d\n", mapwork.y_max, mapwork.x_max);
